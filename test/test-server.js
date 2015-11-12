@@ -12,12 +12,15 @@ var app = server.app;
 chai.use(chaiHttp);
 
 describe('Shopping List', function() {
+    var items;
+
     before(function(done) {
-        seed.run(function() {
+        seed.run(function(err, items) {
+            items = items // can access items array in tests
             done();
         });
     });
-    
+
     it('should list items on GET', function(done) {
         chai.request(app)
             .get('/items')
