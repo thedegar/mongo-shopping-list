@@ -1,15 +1,9 @@
 var Item = require('../models/item');
 
-exports.run = function(callback, errback) {
-    Item.create({name: 'Broad beans'},
+exports.run = function(callback) {
+    Item.create([{name: 'Broad beans'},
                 {name: 'Tomatoes'},
-                {name: 'Peppers'}, function(err, items) {
-        if (err) {
-            errback(err);
-            return;
-        }
-        callback(items);
-    });
+                {name: 'Peppers'}], callback);
 };
 
 if (require.main === module) {
